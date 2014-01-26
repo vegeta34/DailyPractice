@@ -1,14 +1,19 @@
-IEAuto_server :	main.o IEAuto_pthread.o
-	g++ -o IEAuto_server IEAuto_pthread.o IEAuto_socket.o main.o -lpthread
+OBJS = main.o IEAuto_pthread.o IEAuto_socket.o error.o
+IEAuto_server :	$(OBJS)
+	g++ -o IEAuto_server $(OBJS) -lpthread
 
 main.o :
-	g++ -o main.o -c main.cpp -lpthread
+	g++ -c main.cpp -lpthread
 
 IEAuto_socket.o : unp.h
-	g++ -o IEAuto_socket.o -c IEAuto_socket.cpp -lpthread
+	g++ -c IEAuto_socket.cpp -lpthread
 
-IEAuto_pthread.o : unp.h IEAuto_pthread.h
-	g++ -o IEAuto_pthread.o -c IEAuto_pthread.cpp -lpthread
+IEAuto_pthread.o : unp.h
+	g++ -c IEAuto_pthread.cpp -lpthread
+
+error.o : unp.h
+
+.PHONY : clean 
 
 clean :
-	rm *.o IEAuto_server
+	rm IEAuto_server $(OBJS)

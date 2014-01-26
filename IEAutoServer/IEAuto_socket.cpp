@@ -62,8 +62,7 @@ ssize_t Readline(int fd, void *ptr, size_t maxlen)
     return(n);
 }
 
-    int
-tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
+int tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
 {
     int             listenfd, n;
     const int       on = 1;
@@ -111,14 +110,12 @@ tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
  *    * a Tcp_listen() function.
  *     */
 
-    int
-Tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
+int Tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
 {
     return(tcp_listen(host, serv, addrlenp));
 }
 
-    Sigfunc *
-signal(int signo, Sigfunc *func)
+Sigfunc * signal(int signo, Sigfunc *func)
 {
     struct sigaction    act, oact;
 
@@ -140,8 +137,7 @@ signal(int signo, Sigfunc *func)
 }
 /* end signal */
 
-    Sigfunc *
-Signal(int signo, Sigfunc *func)    /* for our signal() function */
+Sigfunc * Signal(int signo, Sigfunc *func)    /* for our signal() function */
 {
     Sigfunc *sigfunc;
 
@@ -150,8 +146,7 @@ Signal(int signo, Sigfunc *func)    /* for our signal() function */
     return(sigfunc);
 }
 
-    int
-Accept(int fd, struct sockaddr *sa, socklen_t *salenptr)
+int Accept(int fd, struct sockaddr *sa, socklen_t *salenptr)
 {
     int     n;
 
@@ -169,44 +164,38 @@ again:
     return(n);
 }
 
-    void
-Bind(int fd, const struct sockaddr *sa, socklen_t salen)
+void Bind(int fd, const struct sockaddr *sa, socklen_t salen)
 {
     if (bind(fd, sa, salen) < 0)
         err_sys("bind error");
 }
 
-    void
-Connect(int fd, const struct sockaddr *sa, socklen_t salen)
+void Connect(int fd, const struct sockaddr *sa, socklen_t salen)
 {
     if (connect(fd, sa, salen) < 0)
         err_sys("connect error");
 }
 
-    void
-Getpeername(int fd, struct sockaddr *sa, socklen_t *salenptr)
+void Getpeername(int fd, struct sockaddr *sa, socklen_t *salenptr)
 {
     if (getpeername(fd, sa, salenptr) < 0)
         err_sys("getpeername error");
 }
 
-    void
-Getsockname(int fd, struct sockaddr *sa, socklen_t *salenptr)
+void Getsockname(int fd, struct sockaddr *sa, socklen_t *salenptr)
 {
     if (getsockname(fd, sa, salenptr) < 0)
         err_sys("getsockname error");
 }
 
-    void
-Getsockopt(int fd, int level, int optname, void *optval, socklen_t *optlenptr)
+void Getsockopt(int fd, int level, int optname, void *optval, socklen_t *optlenptr)
 {
     if (getsockopt(fd, level, optname, optval, optlenptr) < 0)
         err_sys("getsockopt error");
 }
 
 #ifdef  HAVE_INET6_RTH_INIT
-    int
-Inet6_rth_space(int type, int segments)
+int Inet6_rth_space(int type, int segments)
 {
     int ret;
 
@@ -217,8 +206,7 @@ Inet6_rth_space(int type, int segments)
     return ret;
 }
 
-    void *
-Inet6_rth_init(void *rthbuf, socklen_t rthlen, int type, int segments)
+void * Inet6_rth_init(void *rthbuf, socklen_t rthlen, int type, int segments)
 {
     void *ret;
 
@@ -229,22 +217,19 @@ Inet6_rth_init(void *rthbuf, socklen_t rthlen, int type, int segments)
     return ret;
 }
 
-    void
-Inet6_rth_add(void *rthbuf, const struct in6_addr *addr)
+void Inet6_rth_add(void *rthbuf, const struct in6_addr *addr)
 {
     if (inet6_rth_add(rthbuf, addr) < 0)
         err_quit("inet6_rth_add error");
 }
 
-    void
-Inet6_rth_reverse(const void *in, void *out)
+void Inet6_rth_reverse(const void *in, void *out)
 {
     if (inet6_rth_reverse(in, out) < 0)
         err_quit("inet6_rth_reverse error");
 }
 
-    int
-Inet6_rth_segments(const void *rthbuf)
+int Inet6_rth_segments(const void *rthbuf)
 {
     int ret;
 
@@ -255,8 +240,7 @@ Inet6_rth_segments(const void *rthbuf)
     return ret;
 }
 
-    struct in6_addr *
-Inet6_rth_getaddr(const void *rthbuf, int idx)
+struct in6_addr * Inet6_rth_getaddr(const void *rthbuf, int idx)
 {
     struct in6_addr *ret;
 
@@ -269,8 +253,7 @@ Inet6_rth_getaddr(const void *rthbuf, int idx)
 #endif
 
 #ifdef HAVE_KQUEUE
-    int
-Kqueue(void)
+int Kqueue(void)
 {
     int ret;
 
@@ -279,8 +262,7 @@ Kqueue(void)
     return ret;
 }
 
-    int
-Kevent(int kq, const struct kevent *changelist, int nchanges,
+int Kevent(int kq, const struct kevent *changelist, int nchanges,
         struct kevent *eventlist, int nevents, const struct timespec *timeout)
 {
     int ret;
@@ -294,8 +276,7 @@ Kevent(int kq, const struct kevent *changelist, int nchanges,
 
 
 /* include Listen */
-    void
-Listen(int fd, int backlog)
+void Listen(int fd, int backlog)
 {
     char    *ptr;
 
@@ -309,8 +290,7 @@ Listen(int fd, int backlog)
 /* end Listen */
 
 #ifdef  HAVE_POLL
-    int
-Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)
+int Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)
 {
     int     n;
 
@@ -321,8 +301,7 @@ Poll(struct pollfd *fdarray, unsigned long nfds, int timeout)
 }
 #endif
 
-    ssize_t
-Recv(int fd, void *ptr, size_t nbytes, int flags)
+ssize_t Recv(int fd, void *ptr, size_t nbytes, int flags)
 {
     ssize_t     n;
 
@@ -331,8 +310,7 @@ Recv(int fd, void *ptr, size_t nbytes, int flags)
     return(n);
 }
 
-    ssize_t
-Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
+ssize_t Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
         struct sockaddr *sa, socklen_t *salenptr)
 {
     ssize_t     n;
@@ -342,8 +320,7 @@ Recvfrom(int fd, void *ptr, size_t nbytes, int flags,
     return(n);
 }
 
-    ssize_t
-Recvmsg(int fd, struct msghdr *msg, int flags)
+ssize_t Recvmsg(int fd, struct msghdr *msg, int flags)
 {
     ssize_t     n;
 
@@ -352,8 +329,7 @@ Recvmsg(int fd, struct msghdr *msg, int flags)
     return(n);
 }
 
-    int
-Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+int Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
         struct timeval *timeout)
 {
     int     n;
@@ -363,23 +339,20 @@ Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
     return(n);      /* can return 0 on timeout */
 }
 
-    void
-Send(int fd, const void *ptr, size_t nbytes, int flags)
+void Send(int fd, const void *ptr, size_t nbytes, int flags)
 {
     if (send(fd, ptr, nbytes, flags) != (ssize_t)nbytes)
         err_sys("send error");
 }
 
-    void
-Sendto(int fd, const void *ptr, size_t nbytes, int flags,
+void Sendto(int fd, const void *ptr, size_t nbytes, int flags,
         const struct sockaddr *sa, socklen_t salen)
 {
     if (sendto(fd, ptr, nbytes, flags, sa, salen) != (ssize_t)nbytes)
         err_sys("sendto error");
 }
 
-    void
-Sendmsg(int fd, const struct msghdr *msg, int flags)
+void Sendmsg(int fd, const struct msghdr *msg, int flags)
 {
     unsigned int    i;
     ssize_t         nbytes;
@@ -392,22 +365,19 @@ Sendmsg(int fd, const struct msghdr *msg, int flags)
         err_sys("sendmsg error");
 }
 
-    void
-Setsockopt(int fd, int level, int optname, const void *optval, socklen_t optlen)
+void Setsockopt(int fd, int level, int optname, const void *optval, socklen_t optlen)
 {
     if (setsockopt(fd, level, optname, optval, optlen) < 0)
         err_sys("setsockopt error");
 }
 
-    void
-Shutdown(int fd, int how)
+void Shutdown(int fd, int how)
 {
     if (shutdown(fd, how) < 0)
         err_sys("shutdown error");
 }
 
-    int
-Sockatmark(int fd)
+int Sockatmark(int fd)
 {
     int     n;
 
@@ -417,8 +387,7 @@ Sockatmark(int fd)
 }
 
 /* include Socket */
-    int
-Socket(int family, int type, int protocol)
+int Socket(int family, int type, int protocol)
 {
     int     n;
 
@@ -428,8 +397,7 @@ Socket(int family, int type, int protocol)
 }
 /* end Socket */
 
-    void
-Socketpair(int family, int type, int protocol, int *fd)
+void Socketpair(int family, int type, int protocol, int *fd)
 {
     int     n;
 
@@ -437,3 +405,37 @@ Socketpair(int family, int type, int protocol, int *fd)
         err_sys("socketpair error");
 }
 
+ssize_t writen(int fd, const void *vptr, size_t n) /* Write "n" bytes to a descriptor. */
+{
+    size_t      nleft;
+    ssize_t     nwritten;
+    const char  *ptr;
+
+    ptr = (const char*)vptr;
+    nleft = n;
+    while (nleft > 0) {
+        if ( (nwritten = write(fd, ptr, nleft)) <= 0) {
+            if (nwritten < 0 && errno == EINTR)
+                nwritten = 0;       /* and call write() again */
+            else
+                return(-1);         /* error */
+        }
+
+        nleft -= nwritten;
+        ptr   += nwritten;
+    }
+    return(n);
+}
+/* end writen */
+
+void Writen(int fd, void *ptr, size_t nbytes)
+{
+    if (writen(fd, ptr, nbytes) != nbytes)
+        err_sys("writen error");
+}
+
+void Close(int fd)    
+{
+    if (close(fd) == -1)    
+        err_quit("close error");    
+}    

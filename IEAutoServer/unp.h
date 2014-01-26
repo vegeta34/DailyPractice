@@ -454,4 +454,4 @@ extern void	 err_quit(const char *, ...);
 void	 err_ret(const char *, ...);
 extern void	 err_sys(const char *, ...);
 
-#endif	/* __unp_h */
+#endif	/* __unp_ */
