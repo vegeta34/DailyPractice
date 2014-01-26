@@ -44,7 +44,7 @@
 //# include	<sys/sockio.h>
 
 //#ifdef	HAVE_PTHREAD_H
-# include	<pthread.h>
+//# include	<pthread.h>
 //#endif
 
 /* OSF/1 actually disables recv() and send() in <sys/socket.h> */
@@ -268,12 +268,10 @@ void sctp_check_notification(int sock_fd,char *recvlin);
 int sctp_heartbeat_action(int sock_fd, struct sockaddr *sa, 
 			  int action, u_int value);
 
-sctp_assoc_t
-sctp_address_to_associd(int sock_fd, struct sockaddr *sa, socklen_t);
+sctp_assoc_t sctp_address_to_associd(int sock_fd, struct sockaddr *sa, socklen_t);
 
 
-void
-sctp_print_notification(char *notify_buf);
+void sctp_print_notification(char *notify_buf);
 
 int		 tcp_connect(const char *, const char *);
 int		 tcp_listen(const char *, const char *, socklen_t *);
@@ -379,7 +377,7 @@ char	*Sock_ntop(const SA *, socklen_t);
 char	*Sock_ntop_host(const SA *, socklen_t);
 int		 Sockfd_to_family(int);
 int		 Tcp_connect(const char *, const char *);
-int		 Tcp_listen(const char *, const char *, socklen_t *);
+extern int  Tcp_listen(const char *, const char *, socklen_t *);
 int		 Udp_client(const char *, const char *, void **, socklen_t *);
 int		 Udp_connect(const char *, const char *);
 int		 Udp_server(const char *, const char *, socklen_t *);
@@ -387,8 +385,8 @@ ssize_t	 Write_fd(int, void *, size_t, int);
 int		 Writable_timeo(int, int);
 
 			/* prototypes for our Unix wrapper functions: see {Sec errors} */
-void	*Calloc(size_t, size_t);
-void	 Close(int);
+extern void	*Calloc(size_t, size_t);
+extern void	 Close(int);
 void	 Dup2(int, int);
 int		 Fcntl(int, int, int);
 void	 Gettimeofday(struct timeval *, void *);
@@ -423,7 +421,7 @@ FILE	*Fopen(const char *, const char *);
 void	 Fputs(const char *, FILE *);
 
 			/* prototypes for our socket wrapper functions: see {Sec errors} */
-int		 Accept(int, SA *, socklen_t *);
+extern int  Accept(int, SA *, socklen_t *);
 void	 Bind(int, const SA *, socklen_t);
 void	 Connect(int, const SA *, socklen_t);
 void	 Getpeername(int, SA *, socklen_t *);
@@ -434,7 +432,7 @@ void	 Listen(int, int);
 #ifdef	HAVE_POLL
 int		 Poll(struct pollfd *, unsigned long, int);
 #endif
-ssize_t	 Readline(int, void *, size_t);
+extern ssize_t	 Readline(int, void *, size_t);
 ssize_t	 Readn(int, void *, size_t);
 ssize_t	 Recv(int, void *, size_t, int);
 ssize_t	 Recvfrom(int, void *, size_t, int, SA *, socklen_t *);
@@ -448,12 +446,12 @@ void	 Shutdown(int, int);
 int		 Sockatmark(int);
 int		 Socket(int, int, int);
 void	 Socketpair(int, int, int, int *);
-void	 Writen(int, void *, size_t);
+extern void	 Writen(int, void *, size_t);
 
 void	 err_dump(const char *, ...);
 void	 err_msg(const char *, ...);
-void	 err_quit(const char *, ...);
+extern void	 err_quit(const char *, ...);
 void	 err_ret(const char *, ...);
-void	 err_sys(const char *, ...);
+extern void	 err_sys(const char *, ...);
 
 #endif	/* __unp_h */

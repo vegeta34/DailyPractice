@@ -2,6 +2,9 @@
 
 static int			nthreads;
 
+//clifd_mutex = PTHREAD_MUTEX_INITIALIZER;     
+//clifd_cond = PTHREAD_COND_INITIALIZER;
+
 int main(int argc, char **argv)
 {
 	int			i, listenfd, connfd;

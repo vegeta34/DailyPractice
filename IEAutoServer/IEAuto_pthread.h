@@ -1,17 +1,18 @@
 #ifndef __ieauto_pthread_h
 #define __ieauto_pthread_h
+#include <pthread.h>
 #include "unp.h"
 
 typedef struct {
   pthread_t		thread_tid;		/* thread ID */
   long			thread_count;	/* # connections handled */
 } Thread;
-Thread	*tptr;		/* array of Thread structures; calloc'ed */
+extern Thread	*tptr;		/* array of Thread structures; calloc'ed */
 
 #define	MAXNCLI	32
-int					clifd[MAXNCLI], iget, iput;
-pthread_mutex_t		clifd_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t		clifd_cond = PTHREAD_COND_INITIALIZER;
+extern int	clifd[MAXNCLI], iget, iput;
+extern pthread_mutex_t		clifd_mutex;
+extern pthread_cond_t		clifd_cond;
 
 void	thread_make(int i);
 void*	thread_main(void *arg);
